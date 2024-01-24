@@ -67,7 +67,7 @@ const NoticeSection = () => {
   return (
     <section>
       {items.map((wikiPage) => (
-        <Link href={`/wiki/${wikiPage.id}`} key={wikiPage.id}>
+        <Link href={`/${wikiPage.id}`} key={wikiPage.id}>
           {wikiPage.title}
         </Link>
       ))}
