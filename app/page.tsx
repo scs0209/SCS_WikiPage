@@ -1,3 +1,9 @@
+import NoticeSection from "@/Components/NoticeSection";
+
 export default function HomePage() {
-  return <main>Home</main>;
+  return (
+    <main>
+      <NoticeSection />
+    </main>
+  );
 }
