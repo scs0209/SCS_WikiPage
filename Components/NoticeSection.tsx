@@ -1,4 +1,8 @@
+"use client";
+
+import { saveToLocalStorage } from "@/lib/utils/localStorageUtils";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export const items = [
   {
@@ -64,8 +68,12 @@ export const items = [
 ];
 
 const NoticeSection = () => {
+  useEffect(() => {
+    saveToLocalStorage(items);
+  }, [items]);
+
   return (
-    <section>
+    <section className="flex flex-col">
       {items.map((wikiPage) => (
         <Link href={`/${wikiPage.id}`} key={wikiPage.id}>
           {wikiPage.title}
