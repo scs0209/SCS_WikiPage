@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const items = [
+export const items = [
   {
     id: 1,
     title: "React.js 기초 강의",
