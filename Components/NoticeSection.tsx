@@ -1,8 +1,9 @@
 "use client";
 
-import { saveToLocalStorage } from "@/lib/utils/localStorageUtils";
 import Link from "next/link";
 import { useEffect } from "react";
+
+import { saveToLocalStorage } from "@/lib/utils/localStorageUtils";
 
 export const items = [
   {

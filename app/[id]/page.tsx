@@ -1,12 +1,11 @@
-import { items } from "@/Components/NoticeSection";
+import NoticeDetailContent from "@/Components/NoticeDetailContent";
 
 const NoticeDetailPage = ({ params }: { params: { id: number } }) => {
-  const item = items.find((item) => item.id === Number(params.id));
+  const id = params.id;
 
   return (
     <div className="flex flex-col">
-      <span>Title: {item?.title}</span>
-      <span>{item?.content}</span>
+      <NoticeDetailContent id={id} />
     </div>
   );
 };
