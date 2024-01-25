@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { saveToLocalStorage } from "@/lib/utils/localStorageUtils";
+import Pagination from "./Pagination";
 
 export const items = [
   {
@@ -80,8 +81,6 @@ const NoticeSection = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedItems = items.slice(startIndex, startIndex + itemsPerPage);
 
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-
   return (
     <section className="flex flex-col">
       {selectedItems.map((wikiPage) => (
@@ -89,18 +88,12 @@ const NoticeSection = () => {
           {wikiPage.title}
         </Link>
       ))}
-      <div>
-        {currentPage > 1 && (
-          <button onClick={() => setCurrentPage(currentPage - 1)}>
-            이전 페이지
-          </button>
-        )}
-        {currentPage < totalPages && (
-          <button onClick={() => setCurrentPage(currentPage + 1)}>
-            다음 페이지
-          </button>
-        )}
-      </div>
+      <Pagination
+        totalItems={items.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
     </section>
   );
 };
