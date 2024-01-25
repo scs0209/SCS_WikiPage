@@ -111,6 +111,7 @@ const NoticeSection = () => {
         currentPage={currentPage}
         onPageChange={setCurrentPage}
       />
+      <Link href={"/write"}>write</Link>
     </section>
   );
 };
