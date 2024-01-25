@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { saveToLocalStorage } from "@/lib/utils/localStorageUtils";
 
@@ -68,18 +68,39 @@ export const items = [
   },
 ];
 
+const itemsPerPage = 5;
+
 const NoticeSection = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     saveToLocalStorage(items);
   }, [items]);
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedItems = items.slice(startIndex, startIndex + itemsPerPage);
+
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
   return (
     <section className="flex flex-col">
-      {items.map((wikiPage) => (
+      {selectedItems.map((wikiPage) => (
         <Link href={`/${wikiPage.id}`} key={wikiPage.id}>
           {wikiPage.title}
         </Link>
       ))}
+      <div>
+        {currentPage > 1 && (
+          <button onClick={() => setCurrentPage(currentPage - 1)}>
+            이전 페이지
+          </button>
+        )}
+        {currentPage < totalPages && (
+          <button onClick={() => setCurrentPage(currentPage + 1)}>
+            다음 페이지
+          </button>
+        )}
+      </div>
     </section>
   );
 };
