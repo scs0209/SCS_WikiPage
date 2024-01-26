@@ -1,5 +1,11 @@
+import TipTap from "@/Components/TipTap";
+
 const NoticeWritePage = () => {
-  return <div>Write Page</div>;
+  return (
+    <div>
+      <TipTap />
+    </div>
+  );
 };
 
 export default NoticeWritePage;
