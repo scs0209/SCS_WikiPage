@@ -1,7 +1,13 @@
 import { Item } from "../interface";
 
-export function saveToLocalStorage(items: Item[]) {
-  localStorage.setItem("items", JSON.stringify(items));
+export function saveToLocalStorage(newItem: Item) {
+  const existingItems = JSON.parse(localStorage.getItem("items") || "[]");
+
+  const flattenedItems = existingItems.flat();
+
+  flattenedItems.push(newItem);
+
+  localStorage.setItem("items", JSON.stringify(flattenedItems));
 }
 
 export function loadFromLocalStorage() {
