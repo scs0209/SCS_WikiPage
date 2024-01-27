@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import {
   loadFromLocalStorage,
-  saveToLocalStorage,
+  saveItemsToLocalStorage,
 } from "@/lib/utils/localStorageUtils";
 import { Item } from "@/lib/interface";
 
@@ -87,12 +87,12 @@ const NoticeSection = () => {
       if (storedItems) {
         return storedItems;
       } else {
-        saveToLocalStorage(postItems);
+        saveItemsToLocalStorage(postItems);
         return postItems;
       }
     };
 
-    setItems(initializeItems());
+    setItems(initializeItems().reverse());
   }, []);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
