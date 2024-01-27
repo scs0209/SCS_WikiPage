@@ -6,7 +6,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 
-import { saveToLocalStorage } from "@/lib/utils/localStorageUtils";
+import { addNewItemToLocalStorage } from "@/lib/utils/localStorageUtils";
 
 import Toolbar from "./Toolbar";
 
@@ -33,7 +33,7 @@ const TipTap = ({ content }: Props) => {
       content: editor!.getHTML(),
     };
 
-    saveToLocalStorage(newItem);
+    addNewItemToLocalStorage(newItem);
   };
 
   return (
@@ -42,11 +42,12 @@ const TipTap = ({ content }: Props) => {
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className="rounded-md border border-input bg-back w-full min-h-[40px]"
         placeholder="Enter the title here"
       />
-      <button onClick={saveContent}>Save</button>
       <Toolbar editor={editor!} />
       <EditorContent editor={editor} />
+      <button onClick={saveContent}>Save</button>
     </>
   );
 };
