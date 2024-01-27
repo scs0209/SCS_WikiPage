@@ -4,7 +4,7 @@ const NoticeDetailPage = ({ params }: { params: { id: number } }) => {
   const id = params.id;
 
   return (
-    <div className="flex flex-col">
+    <div className="max-w-screen-lg mx-auto">
       <NoticeDetailContent id={id} />
     </div>
   );
