@@ -1,24 +1,22 @@
 "use client";
 
-import { useState } from "react";
-
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 
-import { addNewItemToLocalStorage } from "@/lib/utils/localStorageUtils";
-
 import Toolbar from "./Toolbar";
 
 interface Props {
-  content?: string;
+  title: string;
+  setTitle: (title: string) => void;
+  initialContent?: string;
+  onSave: (content: string) => void;
 }
 
-const TipTap = ({ content }: Props) => {
-  const [title, setTitle] = useState("");
+const TipTap = ({ title, setTitle, initialContent, onSave }: Props) => {
   const editor = useEditor({
     extensions: [StarterKit.configure(), Underline],
-    content: content,
+    content: initialContent,
     editorProps: {
       attributes: {
         class: "rounded-md border min-h-[150px] border-input bg-back",
@@ -26,14 +24,13 @@ const TipTap = ({ content }: Props) => {
     },
   });
 
-  const saveContent = () => {
-    const newItem = {
-      id: Date.now(),
-      title: title,
-      content: editor!.getHTML(),
-    };
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
 
-    addNewItemToLocalStorage(newItem);
+  const saveContent = () => {
+    const content = editor!.getHTML();
+    onSave(content);
   };
 
   return (
@@ -41,7 +38,7 @@ const TipTap = ({ content }: Props) => {
       <input
         type="text"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleTitleChange}
         className="rounded-md border border-input bg-back w-full min-h-[40px]"
         placeholder="Enter the title here"
       />

@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { Item } from "@/lib/interface";
 import {
   loadFromLocalStorage,
   saveItemsToLocalStorage,
 } from "@/lib/utils/localStorageUtils";
-import { useEffect, useState } from "react";
+import TipTap from "./TipTap";
 
 interface Props {
   id: number;
@@ -29,9 +31,11 @@ const NoticeDetailContent = ({ id }: Props) => {
     setIsEditing(true);
   };
 
-  const handleSave = () => {
+  const handleSave = (newTitle: string, newContent: string) => {
     const updatedItems = items.map((item) =>
-      item.id === Number(id) ? { ...item, title, content } : item
+      item.id === Number(id)
+        ? { ...item, title: newTitle, content: newContent }
+        : item
     );
     setItems(updatedItems);
     saveItemsToLocalStorage(updatedItems);
@@ -42,16 +46,14 @@ const NoticeDetailContent = ({ id }: Props) => {
     <div className="flex flex-col">
       {isEditing ? (
         <>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+          <TipTap
+            title={title}
+            setTitle={setTitle}
+            initialContent={content}
+            onSave={(newContent) => {
+              handleSave(title, newContent);
+            }}
           />
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <button onClick={handleSave}>저장하기</button>
         </>
       ) : (
         <>
