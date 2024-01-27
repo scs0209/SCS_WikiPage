@@ -58,7 +58,7 @@ const NoticeDetailContent = ({ id }: Props) => {
       ) : (
         <>
           <span>{title}</span>
-          <span>{content}</span>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
           <button onClick={handleEdit}>수정하기</button>
         </>
       )}
