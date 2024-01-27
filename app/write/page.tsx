@@ -1,13 +1,16 @@
 "use client";
 
-import TipTap from "@/Components/TipTap";
+import { useEffect, useState } from "react";
+
+import { Item } from "@/lib/interface";
 import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
 import { createAndStoreNewItem } from "@/lib/utils/noticeUtils";
-import { useEffect, useState } from "react";
+
+import TipTap from "@/Components/TipTap";
 
 const NoticeWritePage = () => {
   const [title, setTitle] = useState("");
-  const [allItems, setAllItems] = useState<any>([]);
+  const [allItems, setAllItems] = useState<Item[]>([]);
 
   useEffect(() => {
     const items = loadFromLocalStorage();

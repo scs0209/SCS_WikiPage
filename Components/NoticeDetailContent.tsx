@@ -6,8 +6,9 @@ import { Item } from "@/lib/interface";
 import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
 import { handleSave } from "@/lib/utils/noticeUtils";
 
-import TipTap from "./TipTap";
 import { useToggle } from "@/hooks/useToggle";
+
+import TipTap from "./TipTap";
 
 interface Props {
   id: number;

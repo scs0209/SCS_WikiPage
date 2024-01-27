@@ -21,11 +21,11 @@ export const handleSave = (
 
 export const createAndStoreNewItem = (
   title: string,
-  allItems: any[],
+  allItems: Item[],
   newContent: string
 ) => {
   let linkedContent = newContent;
-  allItems.forEach((item: any) => {
+  allItems.forEach((item) => {
     const link = `<a href="/${item.id}">${item.title}</a>`;
     linkedContent = linkedContent.replace(new RegExp(item.title, "g"), link);
   });
