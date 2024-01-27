@@ -1,5 +1,8 @@
 import { Item } from "../interface";
-import { saveItemsToLocalStorage } from "./localStorageUtils";
+import {
+  addNewItemToLocalStorage,
+  saveItemsToLocalStorage,
+} from "./localStorageUtils";
 
 export const handleSave = (
   items: Item[],
@@ -14,4 +17,25 @@ export const handleSave = (
   );
   saveItemsToLocalStorage(updatedItems);
   return updatedItems;
+};
+
+export const createAndStoreNewItem = (
+  title: string,
+  allItems: any[],
+  newContent: string
+) => {
+  let linkedContent = newContent;
+  allItems.forEach((item: any) => {
+    const link = `<a href="/${item.id}">${item.title}</a>`;
+    linkedContent = linkedContent.replace(new RegExp(item.title, "g"), link);
+  });
+
+  const newItem = {
+    id: Date.now(),
+    title: title,
+    content: linkedContent,
+  };
+
+  addNewItemToLocalStorage(newItem);
+  return newItem;
 };
