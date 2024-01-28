@@ -8,12 +8,12 @@ import Toolbar from "./Toolbar";
 
 interface Props {
   title: string;
-  setTitle: (title: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   initialContent?: string;
   onSave: (content: string) => void;
 }
 
-const TipTap = ({ title, setTitle, initialContent, onSave }: Props) => {
+const TipTap = ({ title, onChange, initialContent, onSave }: Props) => {
   const editor = useEditor({
     extensions: [StarterKit.configure(), Underline],
     content: initialContent,
@@ -23,10 +23,6 @@ const TipTap = ({ title, setTitle, initialContent, onSave }: Props) => {
       },
     },
   });
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
 
   const saveContent = () => {
     const content = editor!.getHTML();
@@ -38,7 +34,7 @@ const TipTap = ({ title, setTitle, initialContent, onSave }: Props) => {
       <input
         type="text"
         value={title}
-        onChange={handleTitleChange}
+        onChange={onChange}
         className="rounded-md border border-input bg-back w-full min-h-[40px]"
         placeholder="Enter the title here"
       />

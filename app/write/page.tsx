@@ -7,9 +7,10 @@ import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
 import { createAndStoreNewItem } from "@/lib/utils/noticeUtils";
 
 import TipTap from "@/Components/TextEditor/TipTap";
+import useInput from "@/hooks/useInput";
 
 const NoticeWritePage = () => {
-  const [title, setTitle] = useState("");
+  const title = useInput("");
   const [allItems, setAllItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -20,10 +21,10 @@ const NoticeWritePage = () => {
   return (
     <div className="max-w-screen-lg mx-auto p-8">
       <TipTap
-        title={title}
-        setTitle={setTitle}
+        title={title.value}
+        onChange={title.onChange}
         onSave={(newContent: string) => {
-          createAndStoreNewItem(title, allItems, newContent);
+          createAndStoreNewItem(title.value, allItems, newContent);
         }}
       />
     </div>

@@ -7,6 +7,7 @@ import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
 import { handleSave } from "@/lib/utils/noticeUtils";
 
 import { useToggle } from "@/hooks/useToggle";
+import useInput from "@/hooks/useInput";
 
 import TipTap from "../TextEditor/TipTap";
 import NoticeViewer from "./NoticeViewer";
@@ -17,15 +18,15 @@ interface Props {
 
 const NoticeDetailContent = ({ id }: Props) => {
   const [items, setItems] = useState<Item[]>(loadFromLocalStorage());
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const [isEditing, toggleEditing] = useToggle(false);
+  const title = useInput("");
+  const content = useInput("");
 
   useEffect(() => {
     const item = items.find((item: Item) => item.id === Number(id));
     if (item) {
-      setTitle(item.title);
-      setContent(item.content);
+      title.setValue(item.title);
+      content.setValue(item.content);
     }
   }, [items, id]);
 
@@ -39,15 +40,19 @@ const NoticeDetailContent = ({ id }: Props) => {
     <div className="flex flex-col">
       {isEditing ? (
         <TipTap
-          title={title}
-          setTitle={setTitle}
-          initialContent={content}
+          title={title.value}
+          onChange={title.onChange}
+          initialContent={content.value}
           onSave={(newContent) => {
-            updateAndSaveItem(title, newContent);
+            updateAndSaveItem(title.value, newContent);
           }}
         />
       ) : (
-        <NoticeViewer title={title} content={content} onEdit={toggleEditing} />
+        <NoticeViewer
+          title={title.value}
+          content={content.value}
+          onEdit={toggleEditing}
+        />
       )}
     </div>
   );
