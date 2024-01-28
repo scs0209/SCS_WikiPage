@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Item } from "@/lib/interface";
 import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
-import { handleSave } from "@/lib/utils/noticeUtils";
+import { saveAndUpdateItems } from "@/lib/utils/noticeUtils";
 
 import { useToggle } from "@/hooks/useToggle";
 import useInput from "@/hooks/useInput";
@@ -31,7 +31,7 @@ const NoticeDetailContent = ({ id }: Props) => {
   }, [items, id]);
 
   const updateAndSaveItem = (newTitle: string, newContent: string) => {
-    const updatedItems = handleSave(items, id, newTitle, newContent);
+    const updatedItems = saveAndUpdateItems(items, id, newTitle, newContent);
     setItems(updatedItems);
     toggleEditing();
   };
