@@ -41,7 +41,7 @@ const NoticeDetailContent = ({ id }: Props) => {
       {isEditing ? (
         <TipTap
           title={title.value}
-          onChange={title.onChange}
+          onChangeTitle={title.onChange}
           initialContent={content.value}
           onSave={(newContent) => {
             updateAndSaveItem(title.value, newContent);

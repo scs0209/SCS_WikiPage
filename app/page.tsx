@@ -1,9 +1,9 @@
-import NoticeSection from "@/Components/NoticeSection";
+import NoticeListSection from "@/Components/HomePage/NoticeListSection";
 
 export default function HomePage() {
   return (
     <main>
-      <NoticeSection />
+      <NoticeListSection />
     </main>
   );
 }

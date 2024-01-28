@@ -22,7 +22,7 @@ const NoticeWritePage = () => {
     <div className="max-w-screen-lg mx-auto p-8">
       <TipTap
         title={title.value}
-        onChange={title.onChange}
+        onChangeTitle={title.onChange}
         onSave={(newContent: string) => {
           createAndStoreNewItem(title.value, allItems, newContent);
         }}

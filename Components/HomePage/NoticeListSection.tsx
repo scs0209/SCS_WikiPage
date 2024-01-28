@@ -8,7 +8,7 @@ import { initializeItems } from "@/lib/utils/itemUtils";
 
 import Pagination from "./Pagination";
 
-const NoticeSection = () => {
+const NoticeListSection = () => {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const NoticeSection = () => {
   );
 };
 
-export default NoticeSection;
+export default NoticeListSection;
