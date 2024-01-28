@@ -1,3 +1,5 @@
+import RightButton from "../RightButton";
+
 interface Props {
   title: string;
   content: string;
@@ -7,14 +9,7 @@ interface Props {
 const NoticeViewer = ({ title, content, onEdit }: Props) => {
   return (
     <>
-      <div className="text-right">
-        <button
-          className="mt-4 w-[70px] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={onEdit}
-        >
-          수정
-        </button>
-      </div>
+      <RightButton onClick={onEdit}>수정</RightButton>
       <div className="border-b-2 border-gray-200 mb-4">
         <h1 className="text-2xl font-bold mb-2">{title}</h1>
       </div>

@@ -5,6 +5,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 
 import Toolbar from "./Toolbar";
+import RightButton from "../RightButton";
 
 interface Props {
   title: string;
@@ -45,7 +46,7 @@ const TipTapEditor = ({
       />
       <Toolbar editor={editor!} />
       <EditorContent editor={editor} />
-      <button onClick={saveContent}>Save</button>
+      <RightButton onClick={saveContent}>저장</RightButton>
     </>
   );
 };
