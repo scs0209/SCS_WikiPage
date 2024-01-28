@@ -1,7 +1,11 @@
 import NoticeWriteSection from "@/Components/NoticeWritePage/NoticeWriteSection";
 
 const NoticeWritePage = () => {
-  return <NoticeWriteSection />;
+  return (
+    <main>
+      <NoticeWriteSection />;
+    </main>
+  );
 };
 
 export default NoticeWritePage;

@@ -3,7 +3,11 @@ import NoticeDetailContent from "@/Components/NoticeDetailPage/NoticeDetailConte
 const NoticeDetailPage = ({ params }: { params: { id: number } }) => {
   const id = params.id;
 
-  return <NoticeDetailContent id={id} />;
+  return (
+    <main>
+      <NoticeDetailContent id={id} />;
+    </main>
+  );
 };
 
 export default NoticeDetailPage;
