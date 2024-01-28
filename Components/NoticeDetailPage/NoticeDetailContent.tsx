@@ -8,7 +8,7 @@ import { handleSave } from "@/lib/utils/noticeUtils";
 
 import { useToggle } from "@/hooks/useToggle";
 
-import TipTap from "./TipTap";
+import TipTap from "../TextEditor/TipTap";
 import NoticeViewer from "./NoticeViewer";
 
 interface Props {

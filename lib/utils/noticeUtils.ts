@@ -19,23 +19,30 @@ export const handleSave = (
   return updatedItems;
 };
 
+export const linkifyContent = (content: string, allItems: Item[]): string => {
+  return allItems.reduce((linkedContent, item) => {
+    const link = `<a href="/${item.id}">${item.title}</a>`;
+    return linkedContent.replace(new RegExp(item.title, "g"), link);
+  }, content);
+};
+
+export const createNewItem = (title: string, content: string): Item => {
+  return {
+    id: Date.now(),
+    title: title,
+    content: content,
+  };
+};
+
 export const createAndStoreNewItem = (
   title: string,
   allItems: Item[],
   newContent: string
 ) => {
-  let linkedContent = newContent;
-  allItems.forEach((item) => {
-    const link = `<a href="/${item.id}">${item.title}</a>`;
-    linkedContent = linkedContent.replace(new RegExp(item.title, "g"), link);
-  });
-
-  const newItem = {
-    id: Date.now(),
-    title: title,
-    content: linkedContent,
-  };
+  const linkedContent = linkifyContent(newContent, allItems);
+  const newItem = createNewItem(title, linkedContent);
 
   addNewItemToLocalStorage(newItem);
+
   return newItem;
 };

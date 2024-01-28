@@ -1,4 +1,4 @@
-import NoticeDetailContent from "@/Components/NoticeDetailContent";
+import NoticeDetailContent from "@/Components/NoticeDetailPage/NoticeDetailContent";
 
 const NoticeDetailPage = ({ params }: { params: { id: number } }) => {
   const id = params.id;

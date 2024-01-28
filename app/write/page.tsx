@@ -6,7 +6,7 @@ import { Item } from "@/lib/interface";
 import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
 import { createAndStoreNewItem } from "@/lib/utils/noticeUtils";
 
-import TipTap from "@/Components/TipTap";
+import TipTap from "@/Components/TextEditor/TipTap";
 
 const NoticeWritePage = () => {
   const [title, setTitle] = useState("");
