@@ -22,10 +22,19 @@ const NoticeSection = () => {
   const selectedItems = items.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col space-y-4 p-4 rounded-lg max-w-screen-lg mx-auto">
+      <div className="text-right">
+        <Link href={"/write"}>
+          <button className="mt-4 px-4 py-2 bg-[#1F75FF] text-white rounded shadow-md hover:bg-blue-700 transition-colors duration-200">
+            추가
+          </button>
+        </Link>
+      </div>
       {selectedItems.map((wikiPage) => (
         <Link href={`/${wikiPage.id}`} key={wikiPage.id}>
-          {wikiPage.title}
+          <span className="block p-4 bg-white rounded shadow-md hover:bg-gray-50 transition-colors duration-200">
+            {wikiPage.title}
+          </span>
         </Link>
       ))}
       <Pagination
@@ -34,7 +43,6 @@ const NoticeSection = () => {
         currentPage={currentPage}
         onPageChange={setCurrentPage}
       />
-      <Link href={"/write"}>write</Link>
     </section>
   );
 };
