@@ -9,6 +9,7 @@ import { handleSave } from "@/lib/utils/noticeUtils";
 import { useToggle } from "@/hooks/useToggle";
 
 import TipTap from "./TipTap";
+import NoticeViewer from "./NoticeViewer";
 
 interface Props {
   id: number;
@@ -46,11 +47,7 @@ const NoticeDetailContent = ({ id }: Props) => {
           }}
         />
       ) : (
-        <>
-          <span>{title}</span>
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-          <button onClick={toggleEditing}>수정하기</button>
-        </>
+        <NoticeViewer title={title} content={content} onEdit={toggleEditing} />
       )}
     </div>
   );
