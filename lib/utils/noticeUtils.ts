@@ -4,19 +4,17 @@ import {
   saveItemsToLocalStorage,
 } from "./localStorageUtils";
 
-export const handleSave = (
+export const updateItemInArray = (
   items: Item[],
   id: number,
   newTitle: string,
   newContent: string
-) => {
-  const updatedItems = items.map((item) =>
+): Item[] => {
+  return items.map((item) =>
     item.id === Number(id)
       ? { ...item, title: newTitle, content: newContent }
       : item
   );
-  saveItemsToLocalStorage(updatedItems);
-  return updatedItems;
 };
 
 export const linkifyContent = (content: string, allItems: Item[]): string => {
@@ -24,6 +22,18 @@ export const linkifyContent = (content: string, allItems: Item[]): string => {
     const link = `<a href="/${item.id}">${item.title}</a>`;
     return linkedContent.replace(new RegExp(item.title, "g"), link);
   }, content);
+};
+
+export const saveAndUpdateItems = (
+  items: Item[],
+  id: number,
+  newTitle: string,
+  newContent: string
+): Item[] => {
+  const linkedContent = linkifyContent(newContent, items);
+  const updatedItems = updateItemInArray(items, id, newTitle, linkedContent);
+  saveItemsToLocalStorage(updatedItems);
+  return updatedItems;
 };
 
 export const createNewItem = (title: string, content: string): Item => {
