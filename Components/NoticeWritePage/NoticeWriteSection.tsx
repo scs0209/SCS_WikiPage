@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Item } from "@/lib/interface";
 import { loadFromLocalStorage } from "@/lib/utils/localStorageUtils";
@@ -10,6 +11,7 @@ import TipTapEditor from "@/Components/TextEditor/TipTapEditor";
 import useInput from "@/hooks/useInput";
 
 const NoticeWriteSection = () => {
+  const router = useRouter();
   const title = useInput("");
   const [allItems, setAllItems] = useState<Item[]>([]);
 
@@ -25,6 +27,7 @@ const NoticeWriteSection = () => {
         onChangeTitle={title.onChange}
         onSave={(newContent: string) => {
           createAndStoreNewItem(title.value, allItems, newContent);
+          router.push("/");
         }}
       />
     </section>
