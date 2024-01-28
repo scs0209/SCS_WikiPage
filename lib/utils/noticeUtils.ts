@@ -19,7 +19,7 @@ export const updateItemInArray = (
 
 export const linkifyContent = (content: string, allItems: Item[]): string => {
   return allItems.reduce((linkedContent, item) => {
-    const link = `<a href="/${item.id}">${item.title}</a>`;
+    const link = `<a href="/${item.id}" class="write-link">${item.title}</a>`;
     return linkedContent.replace(new RegExp(item.title, "g"), link);
   }, content);
 };

@@ -18,7 +18,7 @@ const NoticeListSection = () => {
   return (
     <section className="flex flex-col space-y-4 p-4 rounded-lg max-w-screen-lg mx-auto">
       <div className="text-right">
-        <Link href={"/write"}>
+        <Link href={"/write"} className="write-link">
           <button className="mt-4 px-4 py-2 bg-[#1F75FF] text-white rounded shadow-md hover:bg-blue-700 transition-colors duration-200">
             추가
           </button>
