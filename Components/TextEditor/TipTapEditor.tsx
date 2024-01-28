@@ -13,7 +13,12 @@ interface Props {
   onSave: (content: string) => void;
 }
 
-const TipTap = ({ title, onChangeTitle, initialContent, onSave }: Props) => {
+const TipTapEditor = ({
+  title,
+  onChangeTitle,
+  initialContent,
+  onSave,
+}: Props) => {
   const editor = useEditor({
     extensions: [StarterKit.configure(), Underline],
     content: initialContent,
@@ -45,4 +50,4 @@ const TipTap = ({ title, onChangeTitle, initialContent, onSave }: Props) => {
   );
 };
 
-export default TipTap;
+export default TipTapEditor;

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Item } from "@/lib/interface";
 
-import PaginationButton from "../PaginationButton";
+import PaginationButton from "./PaginationButton";
 
 interface Props {
   items: Item[];

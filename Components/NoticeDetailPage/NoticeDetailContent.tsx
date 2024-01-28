@@ -9,7 +9,7 @@ import { handleSave } from "@/lib/utils/noticeUtils";
 import { useToggle } from "@/hooks/useToggle";
 import useInput from "@/hooks/useInput";
 
-import TipTap from "../TextEditor/TipTap";
+import TipTapEditor from "../TextEditor/TipTapEditor";
 import NoticeViewer from "./NoticeViewer";
 
 interface Props {
@@ -37,9 +37,9 @@ const NoticeDetailContent = ({ id }: Props) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <section className="max-w-screen-lg mx-auto flex flex-col">
       {isEditing ? (
-        <TipTap
+        <TipTapEditor
           title={title.value}
           onChangeTitle={title.onChange}
           initialContent={content.value}
@@ -54,7 +54,7 @@ const NoticeDetailContent = ({ id }: Props) => {
           onEdit={toggleEditing}
         />
       )}
-    </div>
+    </section>
   );
 };
 
